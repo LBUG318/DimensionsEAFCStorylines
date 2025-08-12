@@ -66,15 +66,7 @@
     details.nav-item[open]>summary{background:var(--panel-2)}
     .menu{position:absolute;top:100%;left:0;background:var(--panel);border:1px solid var(--border);border-radius:10px;min-width:220px;padding:8px;margin-top:8px}
     .menu a{display:block;padding:10px 12px;border-radius:8px;color:#eaeaea}
-    .menu a:hover{background:var(--panel-2)}
-
-    /* ---------- Scoreboard stripe ---------- */
-    .scoreboard-wrap{background:#000;border-bottom:1px solid var(--border)}
-    .scoreboard{display:flex;gap:10px;flex-wrap:wrap;padding:10px 0}
-    .score-chip{background:var(--chip);border:1px solid var(--border);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;min-width:160px}
-    .score-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
-    .teams{display:flex;flex-direction:column;gap:6px;font-weight:600}
-    .team{display:flex;justify-content:space-between}
+    .menu a:hover{background:var(--panel-2)} 
 
     /* ---------- Main grid ---------- */
     main{background:radial-gradient(1200px 400px at 50% 0%, #151515 0%, #0b0b0b 60%)}
@@ -536,6 +528,7 @@ barrien
   -->
 </body>
 </html>
+
 
 
 
