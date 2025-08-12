@@ -42,7 +42,7 @@
 
     nav{margin-left:auto;display:flex;gap:18px}
 
-        /* dropdowns via <details> (no JS) */
+    /* dropdowns via <details> (no JS) */
     details.nav-item{position:relative}
     details.nav-item>summary{list-style:none;cursor:pointer;padding:6px 8px;border-radius:8px}
     details.nav-item>summary::-webkit-details-marker{display:none}
@@ -50,7 +50,7 @@
     .menu{position:absolute;top:100%;left:0;background:var(--panel);border:1px solid var(--border);border-radius:10px;min-width:220px;padding:8px;margin-top:8px}
     .menu a{display:block;padding:10px 12px;border-radius:8px;color:#eaeaea}
     .menu a:hover{background:var(--panel-2)}
-    
+  
     /* ---------- Main grid ---------- */
     main{background:radial-gradient(1200px 400px at 50% 0%, #151515 0%, #0b0b0b 60%)}
     .grid{display:grid;grid-template-columns:1.1fr 1.7fr .9fr;gap:22px;padding:24px 0}
@@ -96,50 +96,43 @@
     <div class="container bar">
       <div class="hamburger" aria-hidden="true"><span></span><span></span><span></span></div>
      <a class="logo" href="./">
-  <img src="assets/img/LOGO1.svg" alt="">
+  <img src="assets/img/LOGO.svg" alt="">
 </a>
-      </head>
-<body>
-  <!-- Header -->
-  <header>
-    <div class="container bar">
-      <div class="hamburger" aria-hidden="true"><span></span><span></span><span></span></div>
-      <div class="brand" aria-label="Site logo">B/R</div>
 
       <nav aria-label="Primary">
         <!-- Repeat these details blocks for each menu; items are just links to local files/folders in your repo. -->
         <details class="nav-item">
-          <summary>NBA ▾</summary>
+          <summary>Erickinho ▾</summary>
           <div class="menu">
-            <a href="/articles/nba/free-agents.html">Top Free Agents</a>
-            <a href="/articles/nba/power-rankings.html">Power Rankings</a>
+            <a href="/articles/nba/free-agents.html">Top News</a>
+            <a href="/articles/nba/power-rankings.html">Injury report</a>
             <a href="/articles/nba/rumors.html">Latest Rumors</a>
           </div>
         </details>
         <details class="nav-item">
-          <summary>World Football ▾</summary>
+          <summary>Benjianitus▾</summary>
           <div class="menu">
-            <a href="/articles/world/transfer-tracker.html">Transfer Tracker</a>
-            <a href="/articles/world/ucl-preview.html">UCL Preview</a>
-            <a href="/articles/world/tactics.html">Tactics Board</a>
+            <a href="/articles/world/transfer-tracker.html">Top News</a>
+            <a href="/articles/world/ucl-preview.html">Injury report</a>
+            <a href="/articles/world/tactics.html">Latest Rumors</a>
           </div>
         </details>
         <details class="nav-item">
-          <summary>NFL ▾</summary>
+          <summary>Pending ▾</summary>
           <div class="menu">
             <a href="/articles/nfl/mock-draft.html">Mock Draft</a>
             <a href="/articles/nfl/injuries.html">Injury Report</a>
           </div>
         </details>
         <details class="nav-item">
-          <summary>MLB ▾</summary>
+          <summary>Pending ▾</summary>
           <div class="menu">
             <a href="/articles/mlb/trade-deadline.html">Trade Deadline</a>
             <a href="/articles/mlb/prospects.html">Prospects Watch</a>
           </div>
         </details>
         <details class="nav-item">
-          <summary>WNBA ▾</summary>
+          <summary>Pending ▾</summary>
           <div class="menu">
             <a href="/articles/wnba/mvp-ladder.html">MVP Ladder</a>
             <a href="/articles/wnba/rookies.html">Rookies</a>
@@ -147,6 +140,8 @@
         </details>
       </nav>
     </div>
+  
+
   <!-- Main -->
   <main>
     <div class="container">
@@ -187,7 +182,7 @@
           <div class="top-list">
             <a href="articles/Erickinho/whatsapp.html"><span class="tag">🏀</span><span>Barrientos expuesto - DimE</span></a>
             <a href="articles/Benjianitus/mathys.html"><span class="tag">🏈</span><span>El unico Mathys Detourbet - DimB</span></a>
-            <a href="articles/Erickinho/anonymous.html"><span class="tag">🥊</span><span>Chaos at Bromley - DimE</span></a>
+            <a href="/articles/Erickinho/anonymous.html"><span class="tag">🥊</span><span>Chaos at Bromley - DimE</span></a>
             <a href="/articles/nfl/jordan-love-surgery.html"><span class="tag">🏈</span><span>Jordan Love Having Surgery</span></a>
             <a href="/articles/nfl/kelce-browns.html"><span class="tag">🏈</span><span>Kelce Begged to Play for Browns</span></a>
             <a href="/articles/track/shacarri-arrest.html"><span class="tag">🏃</span><span>Sha'Carri Addresses Arrest</span></a>
@@ -211,13 +206,38 @@
     // purely cosmetic current year; no animations or frameworks
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+  <!--
+  HOW TO USE / CUSTOMIZE
+  1) Place this file at your repo root as index.html (or in /docs if Pages serves that folder).
+  2) Replace the placeholder image paths under /assets/img/ with your own files.
+     Example paths used above:
+       /assets/img/free-agents.jpg
+       /assets/img/rookie-watch.jpg
+       /assets/img/atl-feature.jpg
+  3) Update each <a href="..."> to point to the article HTML files you add inside /articles/{section}/.
+  4) Add simple article pages (e.g., /articles/nba/free-agents.html). Here’s a barebones template:
+
+     <!doctype html>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width,initial-scale=1">
+     <title>Article Title</title>
+     <link rel="stylesheet" href="/article.css"> <!-- optional separate CSS -->
+     <body style="margin:0;background:#0b0b0b;color:#eaeaea;font:16px system-ui">
+       <div style="max-width:800px;margin:0 auto;padding:24px">
+         <p><a href="/" style="color:#3ea6ff">← Back</a></p>
+         <h1>Article Title</h1>
+         <p class="byline" style="color:#a0a0a0">By You • Today</p>
+         <img src="/assets/img/article-hero.jpg" alt="" style="border-radius:12px;border:1px solid #242424">
+         <p style="color:#cfcfcf">Your article content…</p>
+       </div>
+     </body>
+
+  5) Dropdown menus use <details>. They work with mouse/touch and don’t require JS.
+  6) Everything here is static: no animations, just links and images.
+  -->
 </body>
 </html>
-
-
-
-
-
 
 
 
