@@ -163,56 +163,6 @@
         </details>
       </nav>
     </div>
-
-    <!-- Scoreboard stripe (static chips; you can turn these into links) -->
-    <div class="scoreboard-wrap">
-      <div class="container scoreboard" aria-label="Scoreboard">
-        <a class="score-chip" href="/mlb/games/phi-cin.html">
-          <div class="score-top"><span>Today</span><span>04:40pm</span></div>
-          <div class="teams">
-            <div class="team"><span>PHI</span><span>69–49</span></div>
-            <div class="team"><span>CIN</span><span>62–58</span></div>
-          </div>
-        </a>
-        <a class="score-chip" href="/mlb/games/min-nyy.html">
-          <div class="score-top"><span>Today</span><span>05:05pm</span></div>
-          <div class="teams">
-            <div class="team"><span>MIN</span><span>58–62</span></div>
-            <div class="team"><span>NYY</span><span>83–56</span></div>
-          </div>
-        </a>
-        <a class="score-chip" href="/mlb/games/chc-tor.html">
-          <div class="score-top"><span>Today</span><span>05:07pm</span></div>
-          <div class="teams">
-            <div class="team"><span>CHC</span><span>67–50</span></div>
-            <div class="team"><span>TOR</span><span>69–50</span></div>
-          </div>
-        </a>
-        <a class="score-chip" href="/mlb/games/bos-hou.html">
-          <div class="score-top"><span>Today</span><span>06:10pm</span></div>
-          <div class="teams">
-            <div class="team"><span>BOS</span><span>65–55</span></div>
-            <div class="team"><span>HOU</span><span>67–52</span></div>
-          </div>
-        </a>
-        <a class="score-chip" href="/wnba/games/dal-ind.html">
-          <div class="score-top"><span>WNBA</span><span>05:30pm</span></div>
-          <div class="teams">
-            <div class="team"><span>DAL</span><span>8–24</span></div>
-            <div class="team"><span>IND</span><span>18–14</span></div>
-          </div>
-        </a>
-        <a class="score-chip" href="/wnba/games/nyl-las.html">
-          <div class="score-top"><span>WNBA</span><span>08:00pm</span></div>
-          <div class="teams">
-            <div class="team"><span>NYL</span><span>20–11</span></div>
-            <div class="team"><span>LAS</span><span>15–16</span></div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </header>
-
   <!-- Main -->
   <main>
     <div class="container">
@@ -586,6 +536,7 @@ barrien
   -->
 </body>
 </html>
+
 
 
 
