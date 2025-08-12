@@ -1,4 +1,5 @@
-'<!doctype html>
+
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -208,7 +209,7 @@
             <img src="/assets/img/outragedErick.png" alt="Veteran free agent in locker room lighting" />
             <div class="body">
               <div class="eyebrow">NBA</div>
-              <div class="headline">Top Veteran Free Agents Available 🤔</div>
+              <div class="headline">Molestias en el vestidor 🤔</div>
             </div>
           </a>
 
@@ -292,4 +293,5 @@
   -->
 </body>
 </html>
+
 
