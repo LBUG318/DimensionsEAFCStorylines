@@ -42,6 +42,15 @@
 
     nav{margin-left:auto;display:flex;gap:18px}
 
+        /* dropdowns via <details> (no JS) */
+    details.nav-item{position:relative}
+    details.nav-item>summary{list-style:none;cursor:pointer;padding:6px 8px;border-radius:8px}
+    details.nav-item>summary::-webkit-details-marker{display:none}
+    details.nav-item[open]>summary{background:var(--panel-2)}
+    .menu{position:absolute;top:100%;left:0;background:var(--panel);border:1px solid var(--border);border-radius:10px;min-width:220px;padding:8px;margin-top:8px}
+    .menu a{display:block;padding:10px 12px;border-radius:8px;color:#eaeaea}
+    .menu a:hover{background:var(--panel-2)}
+    
     /* ---------- Main grid ---------- */
     main{background:radial-gradient(1200px 400px at 50% 0%, #151515 0%, #0b0b0b 60%)}
     .grid{display:grid;grid-template-columns:1.1fr 1.7fr .9fr;gap:22px;padding:24px 0}
@@ -89,6 +98,57 @@
      <a class="logo" href="./">
   <img src="assets/img/LOGO1.svg" alt="">
 </a>
+      </head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container bar">
+      <div class="hamburger" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="brand" aria-label="Site logo">B/R</div>
+
+      <nav aria-label="Primary">
+        <!-- Repeat these details blocks for each menu; items are just links to local files/folders in your repo. -->
+        <details class="nav-item">
+          <summary>NBA ▾</summary>
+          <div class="menu">
+            <a href="/articles/nba/free-agents.html">Top Free Agents</a>
+            <a href="/articles/nba/power-rankings.html">Power Rankings</a>
+            <a href="/articles/nba/rumors.html">Latest Rumors</a>
+          </div>
+        </details>
+        <details class="nav-item">
+          <summary>World Football ▾</summary>
+          <div class="menu">
+            <a href="/articles/world/transfer-tracker.html">Transfer Tracker</a>
+            <a href="/articles/world/ucl-preview.html">UCL Preview</a>
+            <a href="/articles/world/tactics.html">Tactics Board</a>
+          </div>
+        </details>
+        <details class="nav-item">
+          <summary>NFL ▾</summary>
+          <div class="menu">
+            <a href="/articles/nfl/mock-draft.html">Mock Draft</a>
+            <a href="/articles/nfl/injuries.html">Injury Report</a>
+          </div>
+        </details>
+        <details class="nav-item">
+          <summary>MLB ▾</summary>
+          <div class="menu">
+            <a href="/articles/mlb/trade-deadline.html">Trade Deadline</a>
+            <a href="/articles/mlb/prospects.html">Prospects Watch</a>
+          </div>
+        </details>
+        <details class="nav-item">
+          <summary>WNBA ▾</summary>
+          <div class="menu">
+            <a href="/articles/wnba/mvp-ladder.html">MVP Ladder</a>
+            <a href="/articles/wnba/rookies.html">Rookies</a>
+          </div>
+        </details>
+      </nav>
+    </div>
+  
+
   <!-- Main -->
   <main>
     <div class="container">
