@@ -100,7 +100,7 @@
       <nav aria-label="Primary">
         <!-- Repeat these details blocks for each menu; items are just links to local files/folders in your repo. -->
         <details class="nav-item">
-          <summary>NBA ▾</summary>
+          <summary>Erickinho ▾</summary>
           <div class="menu">
             <a href="/articles/nba/free-agents.html">Top Free Agents</a>
             <a href="/articles/nba/power-rankings.html">Power Rankings</a>
@@ -108,7 +108,7 @@
           </div>
         </details>
         <details class="nav-item">
-          <summary>World Football ▾</summary>
+          <summary>Benjianitus ▾</summary>
           <div class="menu">
             <a href="/articles/world/transfer-tracker.html">Transfer Tracker</a>
             <a href="/articles/world/ucl-preview.html">UCL Preview</a>
@@ -167,10 +167,10 @@
 
         <!-- Center: hero feature -->
         <a class="card hero" href="/articles/nfl/atlanta-feature.html">
-          <img src="/assets/img/atl-feature.jpg" alt="ATL player celebrating near end zone" />
+          <img src="/assets/img/outragedErick.jpg" alt="Nypan no esta feliz" />
           <div class="body">
             <div class="eyebrow">Feature</div>
-            <div class="headline">Inside ATL’s New-Look Offense</div>
+            <div class="headline">Mensajes internos salen a luz - DimE</div>
           </div>
         </a>
 
@@ -236,3 +236,4 @@
   -->
 </body>
 </html>
+
