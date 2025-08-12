@@ -148,7 +148,7 @@
       <div class="grid">
         <!-- Left column: two small story cards -->
         <div class="stack">
-          <a class="card" href="/articles/nba/top-veteran-free-agents.html">
+          <a class="card" href="articles/Erickinho/RespuestadeBarrientos.html">
             <img src="assets/img/outragedErick.jpg" alt="Problemas en Bromley - DimE" />
             <div class="body">
               <div class="eyebrow">Erickinho</div>
@@ -236,3 +236,4 @@
   -->
 </body>
 </html>
+
