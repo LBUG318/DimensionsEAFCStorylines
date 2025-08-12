@@ -1,0 +1,107 @@
+/* ==========================================
+   Global Article Styles (article.css)
+   - Drop this file at your repo root:  /article.css
+   - All article pages already link to it: <link rel="stylesheet" href="/article.css">
+   - No animations, pure CSS.
+========================================== */
+
+/* ---------- Theme ---------- */
+:root{
+  --bg:#0b0b0b;            /* page background (dark) */
+  --panel:#111111;         /* panels */
+  --panel-2:#141414;       /* alt panel */
+  --card:#191919;          /* cards */
+  --text:#eaeaea;          /* main text */
+  --muted:#a0a0a0;         /* secondary text */
+  --accent:#3ea6ff;        /* links / accents */
+  --border:#242424;        /* borders */
+  --radius:14px;           /* default radius */
+  --shadow:0 1px 0 #0a0a0a, 0 8px 24px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+}
+img{max-width:100%;display:block}
+
+/* ---------- Layout ---------- */
+.container{max-width:900px;margin-inline:auto;padding:24px}
+.header-space{height:12px}
+
+/* Breadcrumb / top links */
+.breadcrumb{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 12px}
+.breadcrumb a{color:var(--accent);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.breadcrumb .sep{color:var(--muted)}
+
+/* Title + byline */
+h1{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:6px 0 6px}
+.byline{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+
+/* Divider */
+.hr{height:1px;background:var(--border);margin:18px 0}
+
+/* Typography */
+.prose{color:#dcdcdc}
+.prose p{margin:0 0 1em}
+.prose h2{font-size:1.4rem;margin:1.25em 0 .5em}
+.prose h3{font-size:1.15rem;margin:1em 0 .4em}
+.prose ul,.prose ol{margin:0 0 1em 1.2em}
+.prose a{color:var(--accent);text-decoration:none}
+.prose a:hover{text-decoration:underline}
+
+/* Figures / images (1–5 supported) */
+figure{margin:22px 0}
+figure img{border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow)}
+figcaption{color:var(--muted);font-size:.9rem;margin-top:8px}
+
+/* Image sizing utilities (apply on <img> or <figure>) */
+.img-sm{max-width:420px}
+.img-md{max-width:680px}
+.img-lg{max-width:900px}
+.full{max-width:100%}
+.center{margin-inline:auto}
+.left{float:left;margin:0 18px 12px 0}
+.right{float:right;margin:0 0 12px 18px}
+
+/* Responsive clear floats */
+@media (max-width:800px){.left,.right{float:none;margin:0 auto 12px}}
+
+/* Image grids for multiple photos in an article */
+.grid-2, .grid-3, .grid-4 {display:grid;gap:12px;margin:18px 0}
+.grid-2{grid-template-columns:1fr 1fr}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:800px){
+  .grid-3{grid-template-columns:1fr 1fr}
+  .grid-4{grid-template-columns:1fr 1fr}
+}
+
+/* Pull quotes / callouts */
+.callout{background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--accent);padding:14px;border-radius:12px;margin:18px 0}
+
+/* Related links section */
+.related{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin:26px 0}
+.related h3{margin:0 0 10px;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:#cfcfcf}
+.related ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.related li a{display:block;padding:10px 12px;border-radius:10px;background:#1c1c1c;border:1px solid var(--border);color:var(--text)}
+.related li a:hover{text-decoration:underline}
+
+/* Footer nav inside articles */
+.article-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:14px;border-top:1px solid var(--border);color:var(--muted)}
+.article-footer a{color:var(--accent)}
+
+/* Optional top "section tag" */
+.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:#1f1f1f;border:1px solid var(--border);border-radius:999px;color:#cfe6ff;font-size:.85rem}
+
+/* Code blocks (if you ever add snippets) */
+pre{background:#0f0f0f;border:1px solid var(--border);border-radius:10px;padding:12px;overflow:auto}
+code{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+
+/* Tiny helper for visually-hidden labels (accessibility) */
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
