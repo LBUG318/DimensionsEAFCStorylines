@@ -50,7 +50,7 @@
     .menu{position:absolute;top:100%;left:0;background:var(--panel);border:1px solid var(--border);border-radius:10px;min-width:220px;padding:8px;margin-top:8px}
     .menu a{display:block;padding:10px 12px;border-radius:8px;color:#eaeaea}
     .menu a:hover{background:var(--panel-2)}
-
+  
     /* ---------- Main grid ---------- */
     main{background:radial-gradient(1200px 400px at 50% 0%, #151515 0%, #0b0b0b 60%)}
     .grid{display:grid;grid-template-columns:1.1fr 1.7fr .9fr;gap:22px;padding:24px 0}
@@ -100,19 +100,19 @@
       <nav aria-label="Primary">
         <!-- Repeat these details blocks for each menu; items are just links to local files/folders in your repo. -->
         <details class="nav-item">
-          <summary>Erickinho▾</summary>
+          <summary>NBA ▾</summary>
           <div class="menu">
-            <a href="/articles/nba/free-agents.html">Top News</a>
-            <a href="/articles/nba/power-rankings.html">Injury Report</a>
+            <a href="/articles/nba/free-agents.html">Top Free Agents</a>
+            <a href="/articles/nba/power-rankings.html">Power Rankings</a>
             <a href="/articles/nba/rumors.html">Latest Rumors</a>
           </div>
         </details>
         <details class="nav-item">
-          <summary>Benjianitus ▾</summary>
+          <summary>World Football ▾</summary>
           <div class="menu">
-            <a href="/articles/world/transfer-tracker.html">Top News</a>
-            <a href="/articles/world/ucl-preview.html">Injury report</a>
-            <a href="/articles/world/tactics.html">Latest Rumors</a>
+            <a href="/articles/world/transfer-tracker.html">Transfer Tracker</a>
+            <a href="/articles/world/ucl-preview.html">UCL Preview</a>
+            <a href="/articles/world/tactics.html">Tactics Board</a>
           </div>
         </details>
         <details class="nav-item">
@@ -138,8 +138,7 @@
         </details>
       </nav>
     </div>
-
-  </header>
+  
 
   <!-- Main -->
   <main>
@@ -150,15 +149,15 @@
         <!-- Left column: two small story cards -->
         <div class="stack">
           <a class="card" href="/articles/nba/top-veteran-free-agents.html">
-            <img src="assets/img/outragedErick.jpg alt="Respuesta de entrenador Barrientos"/>
+            <img src="/assets/img/free-agents.jpg" alt="Problemas en Bromley - DimE" />
             <div class="body">
-              <div class="eyebrow">NBA</div>
-              <div class="headline">Top Veteran Free Agents Available 🤔</div>
+              <div class="eyebrow">Erickinho</div>
+              <div class="headline">Respuesta de Entrenador Barrientos</div>
             </div>
           </a>
 
           <a class="card" href="/articles/nfl/rookie-watch.html">
-            <img src="/assets/img/rookie-watch.jpg" alt="College QB warming up" />
+            <img src="/assets/img/rookie-watch.jpg" alt="Ben consigue su Super Estrella" />
             <div class="body">
               <div class="eyebrow">NFL</div>
               <div class="headline">Rookie Watch: Preseason Risers</div>
@@ -171,7 +170,7 @@
           <img src="/assets/img/atl-feature.jpg" alt="ATL player celebrating near end zone" />
           <div class="body">
             <div class="eyebrow">Feature</div>
-            <div class="headline">Una vista al vestidor de Bromley - DimE </div>
+            <div class="headline">Inside ATL’s New-Look Offense</div>
           </div>
         </a>
 
