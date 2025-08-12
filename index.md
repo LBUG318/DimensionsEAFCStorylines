@@ -205,7 +205,7 @@
         <!-- Left column: two small story cards -->
         <div class="stack">
           <a class="card" href="/articles/nba/top-veteran-free-agents.html">
-            <img src="/assets/img/free-agents.jpg" alt="Veteran free agent in locker room lighting" />
+            <img src="/assets/img/outragedErick.png" alt="Veteran free agent in locker room lighting" />
             <div class="body">
               <div class="eyebrow">NBA</div>
               <div class="headline">Top Veteran Free Agents Available 🤔</div>
