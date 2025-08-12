@@ -1,214 +1,294 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FauxPress — Local Mock News</title>
+  <title>My Sports Hub</title>
+  <meta name="description" content="Static sports homepage with simple dropdown menus and image links." />
   <style>
-    /* ======= QUICK TWEAKS ======= */
+    /* ---------- Base / reset ---------- */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:#0b0b0b;color:#eaeaea}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    a:focus,button:focus,summary:focus{outline:2px solid #6ea8fe;outline-offset:2px}
+
     :root{
-      --bg:#ffffff;
-      --ink:#111111;
-      --muted:#5a5f6a;
-      --accent:#1a73e8; /* change to taste */
-      --border:#e6e8ec;
-      --chip:#f4f6f9;
-      --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-      --maxw: 1200px;
+      --bg:#0b0b0b;           /* page bg */
+      --panel:#111;           /* panels */
+      --panel-2:#141414;      /* alt panel */
+      --card:#191919;         /* cards */
+      --muted:#a0a0a0;        /* secondary text */
+      --accent:#3ea6ff;       /* links / accents */
+      --border:#242424;       /* borders */
+      --chip:#1f1f1f;         /* chips */
+      --radius:14px;
     }
 
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font-sans);}
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;height:auto;display:block}
-    .container{max-width:var(--maxw);margin:0 auto;padding:24px}
-    .topbar{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:50}
-    .topbar-inner{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:12px 0}
-    .brand{font-family:var(--font-serif);font-weight:800;letter-spacing:0.5px;font-size:28px}
-    .brand .dot{color:var(--accent)}
-    .nav{display:flex;gap:18px;font-size:14px;color:var(--muted)}
-    .nav a{padding:8px 10px;border-radius:8px}
-    .nav a.active,.nav a:hover{background:var(--chip);color:var(--ink)}
+    .container{max-width:1200px;margin-inline:auto;padding:0 16px}
+    .spacer{height:24px}
 
-    .hero{display:grid;grid-template-columns:1.6fr 1fr;gap:24px;margin-top:24px}
-    .hero-card{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#fff}
-    .hero-media{aspect-ratio:16/9;background:#cfd7e3}
-    .hero-body{padding:18px 20px}
-    .kicker{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:700}
-    h1{font-family:var(--font-serif);font-size:38px;line-height:1.1;margin:6px 0 10px}
-    .meta{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:13px}
-    .meta .dot{width:4px;height:4px;background:var(--muted);border-radius:50%}
-    .excerpt{color:#2a2f38;font-size:16px;line-height:1.5;margin-top:8px}
+    /* ---------- Header ---------- */
+    header{position:sticky;top:0;z-index:50;background:#000;border-bottom:1px solid var(--border)}
+    .bar{display:flex;align-items:center;gap:14px;padding:12px 0}
+    .hamburger{width:22px;height:14px;position:relative}
+    .hamburger span{position:absolute;left:0;right:0;height:2px;background:#fff;border-radius:1px}
+    .hamburger span:nth-child(1){top:0}
+    .hamburger span:nth-child(2){top:6px}
+    .hamburger span:nth-child(3){bottom:0}
 
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:28px}
+    .brand{font-weight:800;background:#fff;color:#000;border-radius:6px;padding:6px 8px;letter-spacing:.4px}
 
-    .card{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
-    .card-media{aspect-ratio:16/10;background:#e7ebf3}
-    .card-body{padding:16px 18px}
-    .card h3{font-family:var(--font-serif);font-size:22px;line-height:1.2;margin:6px 0 8px}
-    .card p{color:#2c313b;font-size:15px;margin:0}
+    nav{margin-left:auto;display:flex;gap:18px}
 
-    .list{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .list-item{display:grid;grid-template-columns:120px 1fr;gap:14px;border:1px solid var(--border);border-radius:14px;padding:10px;background:#fff}
-    .thumb{aspect-ratio:16/10;background:#e7ebf3;border-radius:10px}
-    .list h4{font-family:var(--font-serif);font-size:18px;margin:2px 0 6px}
-    .list .snippet{color:#343a46;font-size:14px}
+    /* dropdowns via <details> (no JS) */
+    details.nav-item{position:relative}
+    details.nav-item>summary{list-style:none;cursor:pointer;padding:6px 8px;border-radius:8px}
+    details.nav-item>summary::-webkit-details-marker{display:none}
+    details.nav-item[open]>summary{background:var(--panel-2)}
+    .menu{position:absolute;top:100%;left:0;background:var(--panel);border:1px solid var(--border);border-radius:10px;min-width:220px;padding:8px;margin-top:8px}
+    .menu a{display:block;padding:10px 12px;border-radius:8px;color:#eaeaea}
+    .menu a:hover{background:var(--panel-2)}
 
-    .sidebar{display:flex;flex-direction:column;gap:18px}
-    .widget{border:1px solid var(--border);border-radius:14px;background:#fff}
-    .widget h5{font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin:0;padding:12px 14px;border-bottom:1px solid var(--border)}
-    .widget .content{padding:12px 14px}
-    .pill{display:inline-block;background:var(--chip);padding:6px 10px;border-radius:999px;border:1px solid var(--border);font-size:12px;margin:4px 6px 0 0}
+    /* ---------- Scoreboard stripe ---------- */
+    .scoreboard-wrap{background:#000;border-bottom:1px solid var(--border)}
+    .scoreboard{display:flex;gap:10px;flex-wrap:wrap;padding:10px 0}
+    .score-chip{background:var(--chip);border:1px solid var(--border);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;min-width:160px}
+    .score-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+    .teams{display:flex;flex-direction:column;gap:6px;font-weight:600}
+    .team{display:flex;justify-content:space-between}
 
-    .footer{margin-top:40px;border-top:1px solid var(--border)}
-    .footer-inner{display:flex;gap:24px;justify-content:space-between;align-items:center;padding:16px 0;color:var(--muted);font-size:13px}
+    /* ---------- Main grid ---------- */
+    main{background:radial-gradient(1200px 400px at 50% 0%, #151515 0%, #0b0b0b 60%)}
+    .grid{display:grid;grid-template-columns:1.1fr 1.7fr .9fr;gap:22px;padding:24px 0}
 
-    /* utilities */
-    .row{display:flex;gap:12px;align-items:center}
-    .space{height:8px}
-    .byline{font-weight:600}
+    /* cards */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+    .card .body{padding:12px 14px}
+    .eyebrow{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .headline{font-size:18px;font-weight:700;margin-top:6px}
 
-    /* Make content easy to edit for quick screenshots */
-    [contenteditable="true"]{outline: 1px dashed transparent}
-    [contenteditable="true"]:focus{outline-color: var(--accent);}
+    .stack{display:flex;flex-direction:column;gap:22px}
+    .hero{height:100%;display:flex;flex-direction:column}
+    .hero img{aspect-ratio:16/9;object-fit:cover}
+    .hero .headline{font-size:24px}
 
-    /* Responsive tweaks */
-    @media (max-width: 960px){
-      .hero{grid-template-columns:1fr}
+    /* sidebar */
+    .sidebar{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+    .sidebar h3{margin:0 0 10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#ccc}
+    .top-list{display:flex;flex-direction:column;gap:10px}
+    .top-list a{display:flex;gap:8px;padding:10px;border-radius:10px;background:var(--chip);border:1px solid var(--border)}
+    .top-list a:hover{text-decoration:underline}
+    .top-list .tag{font-size:12px;color:#9bd;min-width:22px}
+
+    /* ---------- Footer ---------- */
+    footer{border-top:1px solid var(--border);background:#000;color:var(--muted)}
+    .foot{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1080px){
       .grid{grid-template-columns:1fr}
-      .list{grid-template-columns:1fr}
-      .list-item{grid-template-columns:90px 1fr}
+      .sidebar{order:2}
+    }
+    @media (max-width:700px){
+      nav{display:none} /* keep it super simple on small screens */
+      .scoreboard{gap:8px}
+      .score-chip{min-width:46%}
     }
   </style>
 </head>
 <body>
-  <!-- ===== Top Bar ===== -->
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <div class="brand" contenteditable="true">FauxPress<span class="dot">.</span></div>
-      <nav class="nav" aria-label="Primary">
-        <a href="#" class="active" contenteditable="true">Home</a>
-        <a href="#" contenteditable="true">World</a>
-        <a href="#" contenteditable="true">Sports</a>
-        <a href="#" contenteditable="true">Culture</a>
-        <a href="#" contenteditable="true">Tech</a>
+  <!-- Header -->
+  <header>
+    <div class="container bar">
+      <div class="hamburger" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="brand" aria-label="Site logo">B/R</div>
+
+      <nav aria-label="Primary">
+        <!-- Repeat these details blocks for each menu; items are just links to local files/folders in your repo. -->
+        <details class="nav-item">
+          <summary>NBA ▾</summary>
+          <div class="menu">
+            <a href="/articles/nba/free-agents.html">Top Free Agents</a>
+            <a href="/articles/nba/power-rankings.html">Power Rankings</a>
+            <a href="/articles/nba/rumors.html">Latest Rumors</a>
+          </div>
+        </details>
+        <details class="nav-item">
+          <summary>World Football ▾</summary>
+          <div class="menu">
+            <a href="/articles/world/transfer-tracker.html">Transfer Tracker</a>
+            <a href="/articles/world/ucl-preview.html">UCL Preview</a>
+            <a href="/articles/world/tactics.html">Tactics Board</a>
+          </div>
+        </details>
+        <details class="nav-item">
+          <summary>NFL ▾</summary>
+          <div class="menu">
+            <a href="/articles/nfl/mock-draft.html">Mock Draft</a>
+            <a href="/articles/nfl/injuries.html">Injury Report</a>
+          </div>
+        </details>
+        <details class="nav-item">
+          <summary>MLB ▾</summary>
+          <div class="menu">
+            <a href="/articles/mlb/trade-deadline.html">Trade Deadline</a>
+            <a href="/articles/mlb/prospects.html">Prospects Watch</a>
+          </div>
+        </details>
+        <details class="nav-item">
+          <summary>WNBA ▾</summary>
+          <div class="menu">
+            <a href="/articles/wnba/mvp-ladder.html">MVP Ladder</a>
+            <a href="/articles/wnba/rookies.html">Rookies</a>
+          </div>
+        </details>
       </nav>
+    </div>
+
+    <!-- Scoreboard stripe (static chips; you can turn these into links) -->
+    <div class="scoreboard-wrap">
+      <div class="container scoreboard" aria-label="Scoreboard">
+        <a class="score-chip" href="/mlb/games/phi-cin.html">
+          <div class="score-top"><span>Today</span><span>04:40pm</span></div>
+          <div class="teams">
+            <div class="team"><span>PHI</span><span>69–49</span></div>
+            <div class="team"><span>CIN</span><span>62–58</span></div>
+          </div>
+        </a>
+        <a class="score-chip" href="/mlb/games/min-nyy.html">
+          <div class="score-top"><span>Today</span><span>05:05pm</span></div>
+          <div class="teams">
+            <div class="team"><span>MIN</span><span>58–62</span></div>
+            <div class="team"><span>NYY</span><span>83–56</span></div>
+          </div>
+        </a>
+        <a class="score-chip" href="/mlb/games/chc-tor.html">
+          <div class="score-top"><span>Today</span><span>05:07pm</span></div>
+          <div class="teams">
+            <div class="team"><span>CHC</span><span>67–50</span></div>
+            <div class="team"><span>TOR</span><span>69–50</span></div>
+          </div>
+        </a>
+        <a class="score-chip" href="/mlb/games/bos-hou.html">
+          <div class="score-top"><span>Today</span><span>06:10pm</span></div>
+          <div class="teams">
+            <div class="team"><span>BOS</span><span>65–55</span></div>
+            <div class="team"><span>HOU</span><span>67–52</span></div>
+          </div>
+        </a>
+        <a class="score-chip" href="/wnba/games/dal-ind.html">
+          <div class="score-top"><span>WNBA</span><span>05:30pm</span></div>
+          <div class="teams">
+            <div class="team"><span>DAL</span><span>8–24</span></div>
+            <div class="team"><span>IND</span><span>18–14</span></div>
+          </div>
+        </a>
+        <a class="score-chip" href="/wnba/games/nyl-las.html">
+          <div class="score-top"><span>WNBA</span><span>08:00pm</span></div>
+          <div class="teams">
+            <div class="team"><span>NYL</span><span>20–11</span></div>
+            <div class="team"><span>LAS</span><span>15–16</span></div>
+          </div>
+        </a>
+      </div>
     </div>
   </header>
 
-  <main class="container">
-    <!-- ===== Hero ===== -->
-    <section class="hero">
-      <article class="hero-card">
-        <div class="hero-media" title="Drop your image file into this box in your editor and adjust src below.">
-          <!-- Replace src with a file you have locally, e.g., images/hero.jpg -->
-          <img src="" alt="Hero image (optional)" style="width:100%;height:100%;object-fit:cover;display:none" onerror="this.style.display='none'">
+  <!-- Main -->
+  <main>
+    <div class="container">
+      <div class="spacer"></div>
+
+      <div class="grid">
+        <!-- Left column: two small story cards -->
+        <div class="stack">
+          <a class="card" href="/articles/nba/top-veteran-free-agents.html">
+            <img src="/assets/img/free-agents.jpg" alt="Veteran free agent in locker room lighting" />
+            <div class="body">
+              <div class="eyebrow">NBA</div>
+              <div class="headline">Top Veteran Free Agents Available 🤔</div>
+            </div>
+          </a>
+
+          <a class="card" href="/articles/nfl/rookie-watch.html">
+            <img src="/assets/img/rookie-watch.jpg" alt="College QB warming up" />
+            <div class="body">
+              <div class="eyebrow">NFL</div>
+              <div class="headline">Rookie Watch: Preseason Risers</div>
+            </div>
+          </a>
         </div>
-        <div class="hero-body">
-          <div class="kicker" contenteditable="true">Breaking</div>
-          <h1 contenteditable="true">Coach declares: “The door is wide open.” Squad tensions simmer as preseason peaks</h1>
-          <div class="meta">
-            <span class="byline" contenteditable="true">By Staff Reporter</span>
-            <span class="dot"></span>
-            <time contenteditable="true">Aug 12, 2025</time>
-            <span class="dot"></span>
-            <span contenteditable="true">6 min read</span>
+
+        <!-- Center: hero feature -->
+        <a class="card hero" href="/articles/nfl/atlanta-feature.html">
+          <img src="/assets/img/atl-feature.jpg" alt="ATL player celebrating near end zone" />
+          <div class="body">
+            <div class="eyebrow">Feature</div>
+            <div class="headline">Inside ATL’s New-Look Offense</div>
           </div>
-          <p class="excerpt" contenteditable="true">After a blunt press conference, supporters wonder: does calling other clubs “the big teams” reveal a quiet doubt—or a motivational feint?</p>
-        </div>
-      </article>
+        </a>
 
-      <aside class="card">
-        <div class="card-media"></div>
-        <div class="card-body">
-          <div class="kicker" contenteditable="true">Opinion</div>
-          <h3 contenteditable="true">Is the “big door” speech genius psychology—or just hubris?</h3>
-          <p contenteditable="true">A surgical read on language, leadership, and locker-room semiotics.</p>
-        </div>
-      </aside>
-    </section>
-
-    <!-- ===== Grid ===== -->
-    <section class="grid">
-      <div>
-        <div class="list">
-          <!-- Repeat list-item blocks as needed -->
-          <article class="list-item">
-            <div class="thumb"></div>
-            <div>
-              <div class="kicker" contenteditable="true">Analysis</div>
-              <h4 contenteditable="true">Calling others “another big club”: rhetorical tactic or self-demotion?</h4>
-              <p class="snippet" contenteditable="true">A close read of phrasing, identity, and status signaling inside modern football narratives.</p>
-            </div>
-          </article>
-
-          <article class="list-item">
-            <div class="thumb"></div>
-            <div>
-              <div class="kicker" contenteditable="true">Report</div>
-              <h4 contenteditable="true">Transfer window: who walks through the big door—and who walks out?</h4>
-              <p class="snippet" contenteditable="true">Thirty days to define the project: wages, roles, and the psychology of staying.</p>
-            </div>
-          </article>
-
-          <article class="list-item">
-            <div class="thumb"></div>
-            <div>
-              <div class="kicker" contenteditable="true">Feature</div>
-              <h4 contenteditable="true">Blueprints of belief: building a “big club” from the inside out</h4>
-              <p class="snippet" contenteditable="true">Culture, candor, and the slow accrual of gravitas.</p>
-            </div>
-          </article>
-
-          <article class="list-item">
-            <div class="thumb"></div>
-            <div>
-              <div class="kicker" contenteditable="true">Notebook</div>
-              <h4 contenteditable="true">Four lines from the presser that reveal the real plan</h4>
-              <p class="snippet" contenteditable="true">Between bravado and blueprint: what he actually promised.</p>
-            </div>
-          </article>
-        </div>
+        <!-- Right: Top headlines list -->
+        <aside class="sidebar" aria-labelledby="top-headlines">
+          <h3 id="top-headlines">Top Headlines</h3>
+          <div class="top-list">
+            <a href="/articles/nba/celtics-leadership.html"><span class="tag">🏀</span><span>Celtics Changing Leadership</span></a>
+            <a href="/articles/nfl/nabers-toe.html"><span class="tag">🏈</span><span>Nabers (Toe) Misses Practice</span></a>
+            <a href="/articles/mma/white-house.html"><span class="tag">🥊</span><span>Dana Bullish on White House Fight</span></a>
+            <a href="/articles/nfl/jordan-love-surgery.html"><span class="tag">🏈</span><span>Jordan Love Having Surgery</span></a>
+            <a href="/articles/nfl/kelce-browns.html"><span class="tag">🏈</span><span>Kelce Begged to Play for Browns</span></a>
+            <a href="/articles/track/shacarri-arrest.html"><span class="tag">🏃</span><span>Sha'Carri Addresses Arrest</span></a>
+          </div>
+        </aside>
       </div>
 
-      <aside class="sidebar">
-        <div class="widget">
-          <h5>Trending</h5>
-          <div class="content">
-            <a class="pill" href="#" contenteditable="true">#TheBigDoor</a>
-            <a class="pill" href="#" contenteditable="true">#ProjectGlory</a>
-            <a class="pill" href="#" contenteditable="true">#EuropaBound</a>
-            <a class="pill" href="#" contenteditable="true">#PreseasonPulse</a>
-          </div>
-        </div>
-        <div class="widget">
-          <h5>About</h5>
-          <div class="content" contenteditable="true">
-            This is a 100% local mockup for screenshots. No tracking, no scripts, no servers—just vibes.
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <div class="space"></div>
-
-    <!-- ===== Footer ===== -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div contenteditable="true">© 2025 FauxPress — Parody / Satire only.</div>
-        <div class="row">
-          <a href="#" contenteditable="true">Terms</a>
-          <span class="dot" style="width:3px;height:3px"></span>
-          <a href="#" contenteditable="true">Privacy</a>
-        </div>
-      </div>
-    </footer>
+      <div class="spacer"></div>
+    </div>
   </main>
 
-  <!-- Optional: quick helper to toggle a compact header for tight screenshots -->
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> My Sports Hub</div>
+      <div><a href="/about.html" style="color:var(--accent)">About</a> · <a href="/contact.html" style="color:var(--accent)">Contact</a></div>
+    </div>
+  </footer>
+
   <script>
-    // No external dependencies; everything is local.
-    // Tip: You can paste images by dragging them into your editor and setting the img src paths.
+    // purely cosmetic current year; no animations or frameworks
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+  <!--
+  HOW TO USE / CUSTOMIZE
+  1) Place this file at your repo root as index.html (or in /docs if Pages serves that folder).
+  2) Replace the placeholder image paths under /assets/img/ with your own files.
+     Example paths used above:
+       /assets/img/free-agents.jpg
+       /assets/img/rookie-watch.jpg
+       /assets/img/atl-feature.jpg
+  3) Update each <a href="..."> to point to the article HTML files you add inside /articles/{section}/.
+  4) Add simple article pages (e.g., /articles/nba/free-agents.html). Here’s a barebones template:
+
+     <!doctype html>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width,initial-scale=1">
+     <title>Article Title</title>
+     <link rel="stylesheet" href="/article.css"> <!-- optional separate CSS -->
+     <body style="margin:0;background:#0b0b0b;color:#eaeaea;font:16px system-ui">
+       <div style="max-width:800px;margin:0 auto;padding:24px">
+         <p><a href="/" style="color:#3ea6ff">← Back</a></p>
+         <h1>Article Title</h1>
+         <p class="byline" style="color:#a0a0a0">By You • Today</p>
+         <img src="/assets/img/article-hero.jpg" alt="" style="border-radius:12px;border:1px solid #242424">
+         <p style="color:#cfcfcf">Your article content…</p>
+       </div>
+     </body>
+
+  5) Dropdown menus use <details>. They work with mouse/touch and don’t require JS.
+  6) Everything here is static: no animations, just links and images.
+  -->
 </body>
 </html>
