@@ -1,0 +1,89 @@
+<!--
+Example article skeleton with up to 5 images. Duplicate this file and place it in the correct folder (e.g., /articles/nba/free-agents.html)
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Respuesta de Barrientos</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      color: #eaeaea;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .byline {
+      font-size: 0.9rem;
+      color: #a0a0a0;
+      margin-bottom: 1.5rem;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 20px 0;
+      border: 1px solid #242424;
+    }
+    a {
+      color: #3ea6ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p><a href="/">← Back to Home</a></p>
+
+    <h1>Erickinho en Conferencia: “La Puerta es Muy Grande” – ¿Mensaje de Fuerza o Admisión de Debilidad?</h1>
+    <div class="byline">By Benjianitus G • Date</div>
+
+    <p>Intro paragraph — Apenas minutos después de que la filtración de sus mensajes internos incendiara el vestuario, Erick Barrientos, mejor conocido como Erickinho, se presentó ante los medios con un discurso breve pero cargado de frases que están dando mucho de qué hablar.</p>
+
+    <!-- Image 1 -->
+    <img src="assets/img/outragedErick.jpg" alt="Barrientos explota" />
+
+    <p>“Si alguien está aquí por dinero, la puerta es muy grande… El que quiera la gloria, bienvenido. El que quiera dinero 💰 puede ir a Arabia, Manchester City, PSG, Chelsea u otro grande de Europa.”
+
+La declaración, aunque envuelta en un tono desafiante, ha abierto la caja de Pandora en cuanto a la percepción que el propio técnico tiene de su club. ¿Por qué incluir a Bromley FC como ajeno a la lista de “grandes de Europa”?
+
+La Contradicción del “Proyecto”
+En la misma intervención, Erickinho defendió su trayectoria reciente:
+
+“Dijeron que era imposible llevar al Bromley a Champions… Pues aquí estamos en Premier, sacándole 30 puntos al segundo en Championship, ganando la Conference y clasificados a Europa League.”
+
+Sin embargo, al mencionar a otros equipos como ejemplos de “grandes” y no incluir al Bromley, el mensaje a sus jugadores podría interpretarse como un golpe a la moral interna: si el propio técnico no los ve en ese grupo, ¿cómo espera que ellos sí lo hagan?
+
+El Subtexto de la “Puerta Grande”
+Amenaza o motivación – Decir que “la puerta es muy grande” puede sonar como un ultimátum más que como una invitación a comprometerse.
+
+Refuerzo del rumor – Después de las filtraciones donde llamaba a varios fichajes “solo de paso”, esta frase parece reforzar la idea de que Erickinho no teme perder piezas clave, incluso en medio de una temporada exitosa.
+
+Mensaje directo a inconformes – Aunque no dio nombres, la alusión parece dirigida a figuras como Nypan, Newman y Przyborek, que ya han manifestado descontento por la disparidad salarial.
+
+Posible Efecto Boomerang
+Expertos advierten que, lejos de cerrar la polémica, estas palabras pueden agravarla:
+
+Los veteranos podrían interpretarlas como un recordatorio de su reemplazabilidad.
+
+Los jóvenes pueden sentir que el técnico está más dispuesto a dejarlos ir que a negociar mejoras o mostrarles respaldo.
+
+La afición, que ve al Bromley como un club en ascenso, podría resentir que el propio entrenador no lo coloque entre la élite europea.
+
+Una Frase que Marca un Parteaguas
+La frase “la puerta es muy grande” puede convertirse en el lema de una ruptura si no se maneja con cuidado. En un vestuario ya polarizado, cualquier palabra se amplifica… y hoy, la amplificación ha sido estruendosa.
+
+“Solo espero que cuando nos enfrentemos en Champions estén preparados”, remató Erickinho, lanzando una advertencia velada a aquellos que decidan marcharse. Pero la gran pregunta que queda flotando es: ¿será el Bromley el destino que todos sueñan… o solo una escala más “de paso” en sus carreras?</p>
+   </div>
+</body>
+</html>
