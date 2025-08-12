@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -109,19 +108,19 @@
       <nav aria-label="Primary">
         <!-- Repeat these details blocks for each menu; items are just links to local files/folders in your repo. -->
         <details class="nav-item">
-          <summary>NBA ▾</summary>
+          <summary>Erickinho▾</summary>
           <div class="menu">
-            <a href="/articles/nba/free-agents.html">Top Free Agents</a>
-            <a href="/articles/nba/power-rankings.html">Power Rankings</a>
+            <a href="/articles/nba/free-agents.html">Top News</a>
+            <a href="/articles/nba/power-rankings.html">Injury Report</a>
             <a href="/articles/nba/rumors.html">Latest Rumors</a>
           </div>
         </details>
         <details class="nav-item">
-          <summary>World Football ▾</summary>
+          <summary>Benjianitus ▾</summary>
           <div class="menu">
-            <a href="/articles/world/transfer-tracker.html">Transfer Tracker</a>
-            <a href="/articles/world/ucl-preview.html">UCL Preview</a>
-            <a href="/articles/world/tactics.html">Tactics Board</a>
+            <a href="/articles/world/transfer-tracker.html">Top News</a>
+            <a href="/articles/world/ucl-preview.html">Injury report</a>
+            <a href="/articles/world/tactics.html">Latest Rumors</a>
           </div>
         </details>
         <details class="nav-item">
@@ -209,7 +208,7 @@
             <img src="/assets/img/outragedErick.png" alt="Veteran free agent in locker room lighting" />
             <div class="body">
               <div class="eyebrow">NBA</div>
-              <div class="headline">Molestias en el vestidor 🤔</div>
+              <div class="headline">Top Veteran Free Agents Available 🤔</div>
             </div>
           </a>
 
@@ -293,5 +292,3 @@
   -->
 </body>
 </html>
-
-
